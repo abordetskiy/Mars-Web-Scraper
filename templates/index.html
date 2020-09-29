@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Costa Rica Weather</title>
+  <title>Mars Web Scraper</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
@@ -14,7 +14,7 @@
     
   <main role="main">
   
-    <section class="jumbotron text-center" style="background-image:url({{links[5]['img_url']}}); background-size: cover;">
+    <section class="jumbotron text-center;" style="background-image:url({{links[5]['img_url']}}); background-size: cover;">
       <div class="container">
         <h1>Welcome to the Mars Web Scraper!</h1>
         <p class="lead text-muted">Get your latest Mars updates and some gorgeous photos</p>
@@ -30,48 +30,54 @@
     <div class="blog-post">
       <h2 class="blog-post-title"><center>{{links[4]['title']}}</center></h2>
         <p><center>{{links[4]['img_url']}}</center></p>
-        <div class="table-responsive" style="width=100%; "><center>{{links[6]['img_url']|safe}}</center></div>
+        <div class="table-responsive" style="width=100%;"><center>{{links[6]['img_url']|safe}}</center></div>
       <hr>
       <h2><center>Gallery</center></h2>
-      <p>If you would like to see an image in full resolution, please slect the "View" button below your selected image</p>
-     
+      <p><center>If you would like to see an image in full resolution, please slect the "View" button below your selected image</center></p>
     </div>
-
+    
     <div class="album py-5 bg-light">
       <div class="container">
-          <div class="row">
-          <div class="col-md-4">
+        <div class="row">
+            {% for x in links[:4]%}
+          <div class="col-md-3">
+            <center>
             <div class="card mb-4 shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+              <img src={{x['img_url']}} width="85%" height="85%"></rect></svg>
               <div class="card-body">
-                <p class="card-text">Hemispheres (0-3)</p>
+                <p class="card-text">{{x['title']}}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    <a href="{{x['img_url']}}"><button type="button" class="btn btn-sm btn-outline-secondary" >View</button></a>
                   </div>
                 </div>
               </div>
             </div>
+          </center>
           </div>
+          {% endfor %}
         </div>
       </div>
     </div>     
-
+    
     
 
   </main>
 </body>
 
+<footer class="footer mt-auto py-3">
+  <div class="container">
+    <br>
+    <br>
+    <p class="float-right">
+      <a href="/">Back to top</a>
+    </p>
+    <p>© Bootstrap</p>
+    <p><a href="https://getbootstrap.com/">Visit the homepage</a></a>.</p>
+  </div>
+</footer>
 
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-right">
-        <a href="#">Back to top</a>
-      </p>
-      <p>© Bootstrap</p>
-      <p><a href="https://getbootstrap.com/">Visit the homepage</a></a>.</p>
-    </div>
-  </footer>
+
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
   </html>
