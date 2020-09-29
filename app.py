@@ -26,6 +26,8 @@ def index():
 def scrape():
     # Run Data Scraper function from mission_to_mars.ipynb
     scrapeData()
+    # User output
+    print("Data Scrape Complete")
     # Pull updated data from mongoDB and pass to webpage
     links = client.mars_db.web_links.find()
     # Return template and data
