@@ -13,13 +13,10 @@ client = pymongo.MongoClient(conn)
 # Create an instance of Flask
 app = Flask(__name__)
 
-# Use PyMongo to establish Mongo connection
-########################### mongo_Variable = PyMongo(app, uri="mongodb://localhost:27017/DATABASE_NAME")
-
-
 # Route to render index.html template
 @app.route("/")
 def index():
+    # Pull data from mongoDB and pass to webpage
     links = client.mars_db.web_links.find()
     print("Homepage Accessed")
     # Return template and data
@@ -29,7 +26,7 @@ def index():
 def scrape():
     # Run Data Scraper function from mission_to_mars.ipynb
     scrapeData()
-    # 
+    # Pull updated data from mongoDB and pass to webpage
     links = client.mars_db.web_links.find()
     # Return template and data
     return render_template("index.html", links=links)
