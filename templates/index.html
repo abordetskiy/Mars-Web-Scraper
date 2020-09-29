@@ -14,28 +14,28 @@
     
   <main role="main">
   
-    <section class="jumbotron text-center" style="background-image:url('{{links[5]['img_url']}}); background-size: cover;">
+    <section class="jumbotron text-center" style="background-image:url({{links[5]['img_url']}}); background-size: cover;">
       <div class="container">
-        <h1>FEATURED IMAGE IN BACKGROUND</h1>
-        <p class="lead text-muted">PLACEHOLDER TEXT</p>
+        <h1>Welcome to the Mars Web Scraper!</h1>
+        <p class="lead text-muted">Get your latest Mars updates and some gorgeous photos</p>
         <p>
           <a href="/scrape" class="btn btn-primary my-2">Scrape Data</a>
 
-          <a href="{{links[5]['img_url']}}" class="btn btn-secondary my-2">
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalXl">Full Size Featured Image</button>
-          </a>
+          <a href="{{links[5]['img_url']}}" class="btn btn-secondary my-2">View Featured Image in Full Resolution</a>
         </p>
       </div>
+      
     </section>
   
     <div class="blog-post">
-      <h2 class="blog-post-title">{{links[4]['title']}}</h2>
-        <p>{{links[4]['img_url']}}</p>
+      <h2 class="blog-post-title"><center>{{links[4]['title']}}</center></h2>
+        <p><center>{{links[4]['img_url']}}</center></p>
+        <div class="table-responsive" style="width=100%; "><center>{{links[6]['img_url']|safe}}</center></div>
       <hr>
+      <h2><center>Gallery</center></h2>
       <p>If you would like to see an image in full resolution, please slect the "View" button below your selected image</p>
+     
     </div>
-
-    <div class="table-responsive" style="width=100%">{{links[6]['img_url']|safe}}</div>
 
     <div class="album py-5 bg-light">
       <div class="container">
@@ -56,6 +56,9 @@
         </div>
       </div>
     </div>     
+
+    
+
   </main>
 </body>
 
