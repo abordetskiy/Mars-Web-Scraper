@@ -2,10 +2,13 @@
 from flask import Flask, render_template
 import pandas as pd
 import pymongo
-#from mission_to_mars.ipynb import scrapeData()
+# Import scrapeData() function from mission_to_mars.ipynb
+# May need to pip install ipynb
+from ipynb.fs.defs.Mission_to_Mars import scrapeData
 
-
-
+# Setup connection to mongodb
+conn = "mongodb://localhost:27017"
+client = pymongo.MongoClient(conn)
 
 # Create an instance of Flask
 app = Flask(__name__)
@@ -17,22 +20,19 @@ app = Flask(__name__)
 # Route to render index.html template
 @app.route("/")
 def index():
-    # Setup connection to mongodb
-    conn = "mongodb://localhost:27017"
-    client = pymongo.MongoClient(conn)
     links = client.mars_db.web_links.find()
-    print(links)
-    stats_table = pd.read_html("Resources/stats.html")
+    print("Homepage Accessed")
     # Return template and data
-    return render_template("index.html", links=links, stats_table=stats_table)
+    return render_template("index.html", links=links)
 
-
-@app.route("/scraper")
-def scraper():
-
-    
+@app.route("/scrape")
+def scrape():
+    # Run Data Scraper function from mission_to_mars.ipynb
+    scrapeData()
+    # 
+    links = client.mars_db.web_links.find()
     # Return template and data
-    return render_template("scraper.html", links=links, stats_table=stats_table)
+    return render_template("index.html", links=links)
 
 if __name__ == "__main__":
     app.run(debug=False)
